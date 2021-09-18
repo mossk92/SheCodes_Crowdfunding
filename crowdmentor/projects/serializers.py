@@ -12,6 +12,7 @@ class PledgeSerializer(serializers.Serializer):
       def create(self, validated_data):
             return Pledge.objects.create(**validated_data)
 
+
 class ProjectSerializer(serializers.Serializer):
       id = serializers.ReadOnlyField()
       title = serializers.CharField(max_length=200)
@@ -19,7 +20,7 @@ class ProjectSerializer(serializers.Serializer):
       goal = serializers.IntegerField()
       image = serializers.URLField()
       is_open = serializers.BooleanField()
-      date_created = serializers.DateTimeField()
+      date_created = serializers.ReadOnlyField()
       owner = serializers.ReadOnlyField(source='owner.id')
       category = serializers.CharField(max_length=200)
       location = serializers.CharField(max_length=200)

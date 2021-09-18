@@ -25,6 +25,7 @@ class ProjectList(APIView):
     def post(self, request):
         # try to create a serilzer from the data in the request body
         serializer = ProjectSerializer(data=request.data)
+        print (serializer)
         # if the serializer thinks it's valid
         if serializer.is_valid():
             # save the object

@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.db.models import Sum
+from datetime import date
 
 # Create your models here.
 class Project(models.Model):
@@ -11,7 +12,7 @@ class Project(models.Model):
      goal = models.IntegerField()
      image = models.URLField()
      is_open = models.BooleanField()
-     date_created = models.DateTimeField()
+     date_created = models.DateField(default=date.today)
      owner = models.ForeignKey(
           get_user_model(),
           on_delete=models.CASCADE,
