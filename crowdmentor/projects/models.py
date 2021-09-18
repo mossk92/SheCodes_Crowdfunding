@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.db.models import Sum
 
 # Create your models here.
 class Project(models.Model):
@@ -18,7 +19,7 @@ class Project(models.Model):
      )
 
      def pledge_total(self):
-          return Pledge.objects.filter(project=self.id)
+          return Pledge.objects.filter(project=self.id).aggregate(Sum('amount'))
 
 class Pledge(models.Model):
      amount = models.IntegerField()
