@@ -5,7 +5,7 @@ class PledgeSerializer(serializers.Serializer):
       id = serializers.ReadOnlyField()
       amount = serializers.IntegerField()
       comment = serializers.CharField(max_length=200)
-      supporter = serializers.CharField(max_length=200)
+      supporter = serializers.ReadOnlyField(source='supporter.id')
       project_id = serializers.IntegerField()
       
       #this will be called for POST /projects to create a new projects
@@ -23,8 +23,8 @@ class ProjectSerializer(serializers.Serializer):
       owner = serializers.ReadOnlyField(source='owner.id')
       category = serializers.CharField(max_length=200)
       location = serializers.CharField(max_length=200)
+      pledges_total = serializers.ReadOnlyField(source='pledge_total')
       
-
      #this will be called for POST /projects to create a new projects
       def create(self, validated_data):
             return Project.objects.create(**validated_data)
