@@ -4,10 +4,13 @@ from rest_framework.response import Response
 from .models import Project, Pledge
 from .serializers import ProjectSerializer, PledgeSerializer, ProjectDetailSerialiser
 from django.http import Http404
-from rest_framework import status
+from rest_framework import status, permissions
+from .permission import IsOwnerOrReadOnly
 
 # for /projects
 class ProjectList(APIView):
+    #give permission to the owner of project only others just leave read only
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     # for GET /projects
     def get(self, request):
@@ -25,7 +28,7 @@ class ProjectList(APIView):
         # if the serializer thinks it's valid
         if serializer.is_valid():
             # save the object
-            serializer.save()
+            serializer.save(owner=request.user)
             # send the serialized (saved) data back in response data
             return Response(
                 serializer.data,
@@ -37,9 +40,16 @@ class ProjectList(APIView):
         )
 
 class ProjectDetail(APIView):
+    permission_classes = [
+        permissions.IsAuthenticatedOrReadOnly,
+        IsOwnerOrReadOnly
+    ]
+    
     def get_object(self, pk):
         try:
-            return Project.objects.get(pk=pk)
+            project = Project.objects.get(pk=pk)
+            self.check_object_permissions(self.request, project)
+            return project
         except Project.DoesNotExist:
             raise Http404        
 
@@ -47,6 +57,17 @@ class ProjectDetail(APIView):
         project = self.get_object(pk)
         serializer = ProjectDetailSerialiser(project)
         return Response(serializer.data)
+
+    def put(self, request, pk):
+        project = self.get_object(pk)
+        data = request.data
+        serializer = ProjectDetailSerialiser(
+            instance=project,
+            data=data,
+            partial=True
+        )
+        if serializer.is_valid():
+            serializer.save()
 
 class PledgeList(APIView):
     def get(self, request):
