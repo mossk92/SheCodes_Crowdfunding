@@ -8,6 +8,6 @@ class CustomUserSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=200)
     email = serializers.EmailField()
     bio = serializers.CharField()
-    date_created = serializers.DateField()
+    date_created = serializers.ReadOnlyField()
     def create(self, validated_data):
         return CustomUser.objects.create(**validated_data)
