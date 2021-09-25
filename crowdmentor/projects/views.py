@@ -5,7 +5,7 @@ from .models import Project, Pledge
 from .serializers import PledgeDetailSerializer, ProjectSerializer, PledgeSerializer, ProjectDetailSerialiser
 from django.http import Http404
 from rest_framework import status, permissions
-from .permission import IsOwnerOrReadOnly
+from .permission import IsOwnerOrReadOnly, IsSupporterOrReadOnly
 
 # for /projects
 class ProjectList(APIView):
@@ -98,7 +98,7 @@ class PledgeList(APIView):
 class PledgeDetail(APIView):
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly,
-        IsOwnerOrReadOnly
+        IsSupporterOrReadOnly
     ]
     
     def get_object(self, pk):
