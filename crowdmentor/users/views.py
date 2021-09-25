@@ -1,9 +1,10 @@
+from django.contrib.auth.models import User
 from django.http import Http404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .models import CustomUser
-from .serializer import CustomUserSerializer
+from .serializer import CustomUserSerializer, UserDetailSerialiser
 
 class CustomUserList(APIView):
     #retrieve all users
@@ -11,6 +12,13 @@ class CustomUserList(APIView):
         users = CustomUser.objects.all()
         serializer = CustomUserSerializer(users, many=True)
         return Response(serializer.data)
+
+    def post(self, request):
+        serializer = CustomUserSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors)
 
 class CustomUserDetail(APIView):
     #helper method for getting auser and raising a 404 if that user does not exist
@@ -25,12 +33,17 @@ class CustomUserDetail(APIView):
         serializer = CustomUserSerializer(user)
         return Response(serializer.data)
 
-    def post(self, request):
-        serializer = CustomUserSerializer(data=request.data)
+    def put(self, request, pk):
+        user = self.get_object(pk)
+        data = request.data   
+        serializer = UserDetailSerialiser(
+            instance=user,
+            data=data,
+            partial=True
+        )             
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors)
+        return Response(serializer.data)
 
     def delete(self, request, pk, format=None):
         user = self.get_object(pk)
