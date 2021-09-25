@@ -69,11 +69,12 @@ class ProjectDetail(APIView):
         )
         if serializer.is_valid():
             serializer.save()
+        return Response(serializer.data)
     
     def delete(self, request, pk, format=None):
         project = self.get_object(pk)
         project.delete()
-        return Response(Status=status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 class PledgeList(APIView):
     def get(self, request):
@@ -127,4 +128,4 @@ class PledgeDetail(APIView):
     def delete(self, request, pk, format=None):
         pledge = self.get_object(pk)
         pledge.delete()
-        return Response(Status=status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_204_NO_CONTENT)
