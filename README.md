@@ -1,4 +1,4 @@
-# DRF Crowdfunding: Plus Resources: Django Project Starter
+# DRF Crowdfunding: Django Project Starter
 Backend coding for Crowdfunding app - frontend to come!
 
 ## Page Links
@@ -78,4 +78,24 @@ Backend coding for Crowdfunding app - frontend to come!
         ● Setting goal to either time (hr) which is the default but also give option for date where a pledge has to commit all (e.g commit to assisting to meet that goal)
 
 ###### Screenshots
+    ● GET Requests:
+<img width="942" alt="Heroku_GET_Users_All" src="https://user-images.githubusercontent.com/86653337/134788998-86087af6-acc7-463a-8e73-ed5669003d70.png">
+<img width="942" alt="Heroku_GET_Users_Specified" src="https://user-images.githubusercontent.com/86653337/134789006-2fe685f5-03c6-424d-a718-78ba6fb757ea.png">
+<img width="942" alt="Heroku_GET_Projects_All" src="https://user-images.githubusercontent.com/86653337/134789009-84c1368b-b669-4456-b402-e491ce5bdec7.png">
+<img width="942" alt="Heroku_GET_Projects_Specified" src="https://user-images.githubusercontent.com/86653337/134789010-f710e1cb-33cc-4448-8c7c-77e819d02db0.png">
+<img width="942" alt="Heroku_GET_Pledges_All" src="https://user-images.githubusercontent.com/86653337/134789013-a5a5746f-b523-4d1a-9a4d-82304f69fbfd.png">
+<img width="942" alt="Heroku_GET_Pledges_Specified" src="https://user-images.githubusercontent.com/86653337/134789017-30d29bbc-24cc-4895-b83f-10cc01a2f264.png">
 
+    ● POST Requests:
+<img width="942" alt="Heroku_POST_Users" src="https://user-images.githubusercontent.com/86653337/134789034-a85efa32-8f68-4128-b384-6300aca38044.png">
+<img width="942" alt="Heroku_POST_Token" src="https://user-images.githubusercontent.com/86653337/134789037-54a8ae56-478b-4eb2-b85b-4dbf91bd74de.png">
+<img width="942" alt="Heroku_POST_Projects" src="https://user-images.githubusercontent.com/86653337/134789040-b0129c69-5144-4b80-a1d7-899f554e40eb.png">
+<img width="942" alt="Heroku_POST_Pledges" src="https://user-images.githubusercontent.com/86653337/134789043-914e1ba6-ed98-4c84-ac8b-f95b40e3db5c.png">
+
+    ● PUT Requests:
+<img width="942" alt="Heroku_PUT_Users" src="https://user-images.githubusercontent.com/86653337/134789054-9783c19a-d53f-4aec-bf40-6188ab024805.png">
+<img width="942" alt="Heroku_PUT_Projects" src="https://user-images.githubusercontent.com/86653337/134789055-c4183797-71fd-44f3-bc2b-69dd200b7e2f.png">
+
+    ● DELETE Requests:
+<img width="942" alt="Heroku_DEL_Pledges" src="https://user-images.githubusercontent.com/86653337/134789063-fac26af7-3f6f-4c45-8620-6a894b2a7a05.png">
+<img width="942" alt="Heroku_DEL_Projects" src="https://user-images.githubusercontent.com/86653337/134789066-9bd8f182-2370-4dc9-ba32-457e50d6f7e0.png">
